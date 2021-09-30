@@ -25,6 +25,8 @@
     <button
       v-if="foodItemSell"
       class="food-card__add-item-btn add-item-btn"
+      :class="{ 'remove-item-btn': forSelling }"
+      @click="forSelling = !forSelling"
     ></button>
     <button
       v-if="!foodItemSell"
@@ -46,12 +48,21 @@ export default {
     },
     inBasket: {
       type: Boolean,
-      required: false
+      required: false,
+      default: false
     }
   },
   data () {
     return {
-      foodItemSell: this.forSale
+      foodItemSell: this.forSale,
+      forSelling: this.inBasket
+    }
+  },
+  methods: {
+    addToBasket: function () {
+      if (this.inBasket) {
+        this.forSelling = false
+      }
     }
   }
 }
@@ -144,6 +155,7 @@ export default {
     position: absolute;
     top: 15px;
     left: 240px;
+    cursor: pointer;
   }
   /* .food-card__add-item-btn */
   &__add-item-btn {
@@ -304,7 +316,7 @@ export default {
       content: ' ';
       border: 1px solid white;
       width: 10px;
-      transform: rotate(90deg);
+      transform: rotate(140deg);
       top: 17px;
       left: 13px;
       background-color: #fff;
@@ -313,7 +325,7 @@ export default {
     &::before {
       display: block;
       content: ' ';
-      transform: rotate(0deg);
+      transform: rotate(45deg);
       border: 1px solid white;
       width: 10px;
       position: absolute;
