@@ -1,14 +1,14 @@
 <template>
   <div>
     <div v-if="page == 0" class="slider-items">
-      <product-item-template>Slide1</product-item-template>
-      <product-item-template>Slide2</product-item-template>
-      <product-item-template>Slide3</product-item-template>
+      <product-item-template :forSale="false">Slide1</product-item-template>
+      <product-item-template :forSale="false">Slide2</product-item-template>
+      <product-item-template :forSale="false">Slide3</product-item-template>
     </div>
     <div v-if="page == 1" class="slider-items">
-      <product-item-template>Slide4</product-item-template>
-      <product-item-template>Slide5</product-item-template>
-      <product-item-template>Slide6</product-item-template>
+      <product-item-template :forSale="false">Slide4</product-item-template>
+      <product-item-template :forSale="false">Slide5</product-item-template>
+      <product-item-template :forSale="false">Slide6</product-item-template>
     </div>
   </div>
   <div class="carusel">

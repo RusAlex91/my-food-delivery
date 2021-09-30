@@ -27,8 +27,36 @@
     </div>
     <Slider></Slider>
     <div class="landing-middle-part-wrapper">
-      <h2>All Items</h2>
-      <view-all-btn></view-all-btn>
+      <div class="food-item-head">
+        <h2>All Items</h2>
+        <view-all-btn></view-all-btn>
+      </div>
+      <div class="food-items">
+        <product-item-template mode="food-card-vertical" :forSale="true"
+          >Slide1</product-item-template
+        >
+        <product-item-template mode="food-card-vertical" :forSale="true"
+          >Slide2</product-item-template
+        >
+        <product-item-template mode="food-card-vertical" :forSale="true"
+          >Slide3</product-item-template
+        >
+        <product-item-template mode="food-card-vertical" :forSale="true"
+          >Slide4</product-item-template
+        >
+        <product-item-template mode="food-card-vertical" :forSale="true"
+          >Slide5</product-item-template
+        >
+        <product-item-template mode="food-card-vertical" :forSale="true"
+          >Slide6</product-item-template
+        >
+        <product-item-template mode="food-card-vertical" :forSale="true"
+          >Slide7</product-item-template
+        >
+        <product-item-template mode="food-card-vertical" :forSale="true"
+          >Slide8</product-item-template
+        >
+      </div>
     </div>
   </div>
 </template>
@@ -142,6 +170,28 @@ export default {
     &:hover {
       filter: var(--invert);
     }
+  }
+}
+
+.landing-middle-part-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 900px;
+  .food-item-head {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    .view-all-btn {
+      margin-left: auto;
+    }
+  }
+  .food-items {
+    margin-top: 100px;
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 100px; /* ⇳ only */
+    column-gap: 25px; /* ⬄ only */
   }
 }
 </style>

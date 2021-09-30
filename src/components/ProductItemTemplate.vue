@@ -1,5 +1,5 @@
 <template>
-  <div class="food-card ">
+  <div :class="mode" class="food-card">
     <div class="food-card__image-wrapper">
       <img
         src="@/assets/png/food/kfc-set.png"
@@ -8,26 +8,50 @@
       />
     </div>
     <div class="food-card__inner-wrapper">
-      <slot></slot>
+      <!-- <slot></slot> -->
       <h5 class="food-card__title">
-        KFC+ Pepsi, french fries, chicken, salt.
+        Vegetable salad
       </h5>
-      <p class="food-card__desc">Pepsi, french fries, chicken, salt.</p>
+      <p class="food-card__desc">
+        Pepsi, french fries, chicken, salt. Pepsi, french fries, chicken, salt.
+      </p>
       <div v-if="foodItemSell" class="food-card__weight-and-price">
         <span class="food-card__weight">260g</span>
         <span class="food-card__price">$20</span>
       </div>
     </div>
     <img src="@/assets/png/fire.png" alt="" class="food-card__special-offer" />
-    <button class="food-card__add-item-btn continue-to-item-btn"></button>
+
+    <button
+      v-if="foodItemSell"
+      class="food-card__add-item-btn add-item-btn"
+    ></button>
+    <button
+      v-if="!foodItemSell"
+      class="food-card__add-item-btn continue-to-item-btn"
+    ></button>
   </div>
 </template>
 
 <script>
 export default {
+  props: {
+    mode: {
+      type: String,
+      required: false
+    },
+    forSale: {
+      type: Boolean,
+      required: true
+    },
+    inBasket: {
+      type: Boolean,
+      required: false
+    }
+  },
   data () {
     return {
-      foodItemSell: false
+      foodItemSell: this.forSale
     }
   }
 }
@@ -77,7 +101,7 @@ export default {
     margin: 0px;
     overflow: hidden;
     text-overflow: ellipsis;
-    height: 20px;
+    height: 24px;
     width: 140px;
     white-space: nowrap;
   }
@@ -131,47 +155,50 @@ export default {
 }
 
 .food-card-vertical {
-  width: 220px;
+  width: 200px;
   height: 240px;
   flex-direction: column;
-  padding: 5px;
   .food-card {
     &__image-wrapper {
       img {
+        width: 150px;
+        filter: drop-shadow(0px 10px 10px rgba(0, 0, 0, 0.795));
       }
     }
     &__inner-wrapper {
-      padding-bottom: 100px;
+      padding-bottom: 80px;
     }
     &__title {
       font-weight: 400;
       font-size: 19px;
     }
     &__desc {
-      height: 50px;
-      width: 175px;
+      height: 55px;
+      width: 150px;
+      white-space: initial;
     }
     &__weight-and-price {
       display: flex;
       flex-direction: row-reverse;
       justify-content: flex-end;
       align-items: center;
-      gap: 30px;
 
+      column-gap: 15px; /* ⬄ only */
       // padding-right: 40px;
       // padding-bottom: 10px;
     }
     &__price {
-      font-size: 24px;
+      font-size: 28px;
     }
     &__weight {
+      margin-top: 3px;
       font-size: 12px;
     }
     &__special-offer {
-      width: 20px;
-      height: 20px;
+      width: 35px;
+      height: 35px;
       position: absolute;
-      top: -30px;
+      top: -50px;
       left: 0px;
       padding: 7px;
       border-radius: 20px;
@@ -180,39 +207,36 @@ export default {
     &__add-item-btn {
       position: absolute;
       top: 195px;
-      left: 170px;
+      left: 155px;
       display: block;
     }
   }
 }
 
 .add-item-btn {
-  width: 45px;
-  height: 45px;
-  border-radius: 30px;
+  @include standard-btn;
   background-color: #14c458;
-  border: 0px;
-
   cursor: pointer;
   &::after {
     position: absolute;
     content: ' ';
-    border: 2px solid white;
+    border: 1px solid white;
     width: 10px;
     transform: rotate(90deg);
-    top: 20px;
-    left: 16px;
+    top: 17px;
+    left: 13px;
     background-color: #fff;
     transition: 0.2s;
   }
   &::before {
     display: block;
     content: ' ';
-    border: 2px solid white;
+    transform: rotate(0deg);
+    border: 1px solid white;
     width: 10px;
     position: absolute;
-    top: 20px;
-    left: 16px;
+    top: 17px;
+    left: 13px;
     background-color: #fff;
     transition: 0.2s;
   }
@@ -221,22 +245,22 @@ export default {
       position: absolute;
       content: ' ';
       background-color: #fff;
-      border: 2px solid white;
-      width: 12px;
+      border: 1px solid white;
+      width: 8px;
       transform: rotate(132deg);
-      top: 20px;
-      left: 18px;
+      top: 17px;
+      left: 16px;
       transition: 0.2s;
     }
     &::before {
       display: block;
       content: ' ';
       background-color: #fff;
-      border: 2px solid white;
-      width: 6px;
+      border: 1px solid white;
+      width: 5px;
       position: absolute;
-      top: 22px;
-      left: 14px;
+      top: 20px;
+      left: 13px;
       transform: rotate(40deg);
       transition: 0.2s;
     }
@@ -248,33 +272,29 @@ export default {
 }
 
 .remove-item-btn {
-  width: 45px;
-  height: 45px;
-  border-radius: 30px;
+  @include standard-btn;
   background-color: #f14555;
-  border: 0px;
-
   cursor: pointer;
   &::after {
     position: absolute;
     content: ' ';
     background-color: #fff;
-    border: 2px solid white;
-    width: 12px;
+    border: 1px solid white;
+    width: 8px;
     transform: rotate(132deg);
-    top: 20px;
-    left: 18px;
+    top: 17px;
+    left: 16px;
     transition: 0.2s;
   }
   &::before {
     display: block;
     content: ' ';
     background-color: #fff;
-    border: 2px solid white;
-    width: 6px;
+    border: 1px solid white;
+    width: 5px;
     position: absolute;
-    top: 22px;
-    left: 14px;
+    top: 20px;
+    left: 13px;
     transform: rotate(40deg);
     transition: 0.2s;
   }
@@ -282,23 +302,23 @@ export default {
     &::after {
       position: absolute;
       content: ' ';
-      border: 2px solid white;
+      border: 1px solid white;
       width: 10px;
       transform: rotate(90deg);
-      top: 20px;
-      left: 16px;
+      top: 17px;
+      left: 13px;
       background-color: #fff;
       transition: 0.2s;
     }
     &::before {
-      transform: rotate(0deg);
       display: block;
       content: ' ';
-      border: 2px solid white;
+      transform: rotate(0deg);
+      border: 1px solid white;
       width: 10px;
       position: absolute;
-      top: 20px;
-      left: 16px;
+      top: 17px;
+      left: 13px;
       background-color: #fff;
       transition: 0.2s;
     }
