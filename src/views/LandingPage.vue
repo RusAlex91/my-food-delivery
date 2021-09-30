@@ -26,6 +26,10 @@
       </ul>
     </div>
     <Slider></Slider>
+    <div class="landing-middle-part-wrapper">
+      <h2>All Items</h2>
+      <view-all-btn></view-all-btn>
+    </div>
   </div>
 </template>
 
@@ -56,7 +60,7 @@ export default {
   font-family: 'Source Sans Pro', sans-serif;
   background-image: url('../assets/landing/bg.png');
   background-repeat: no-repeat;
-  background-color: #353535;
+  background-color: #161616;
   color: white;
 }
 .landing-top-part-wrapper {

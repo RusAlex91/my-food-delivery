@@ -8,11 +8,12 @@
       />
     </div>
     <div class="food-card__inner-wrapper">
+      <slot></slot>
       <h5 class="food-card__title">
         KFC+ Pepsi, french fries, chicken, salt.
       </h5>
       <p class="food-card__desc">Pepsi, french fries, chicken, salt.</p>
-      <div class="food-card__weight-and-price">
+      <div v-if="foodItemSell" class="food-card__weight-and-price">
         <span class="food-card__weight">260g</span>
         <span class="food-card__price">$20</span>
       </div>
@@ -23,7 +24,13 @@
 </template>
 
 <script>
-export default {}
+export default {
+  data () {
+    return {
+      foodItemSell: false
+    }
+  }
+}
 </script>
 
 <style scoped lang="scss">
@@ -34,9 +41,9 @@ export default {}
 }
 
 @mixin standard-btn {
-  width: 45px;
-  height: 45px;
-  border-radius: 30px;
+  width: 35px;
+  height: 35px;
+  border-radius: 20px;
   background-color: #14c458;
   border: 0px;
 
@@ -45,10 +52,10 @@ export default {}
 
 .food-card {
   --card-color: #22222a;
-  width: 400px;
-  height: 200px;
+  width: 270px;
+  height: 140px;
   background-color: var(--card-color);
-  border-radius: 40px;
+  border-radius: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -60,17 +67,19 @@ export default {}
   }
   /* .food-card__item */
   &__item-pic {
-    width: 180px;
+    width: 70px;
     margin-right: 10px;
     padding: 0px;
   }
   /* .food-card__title */
   &__title {
-    font-size: 24px;
+    font-size: 18px;
     margin: 0px;
     overflow: hidden;
-    height: 25px;
-    width: 150px;
+    text-overflow: ellipsis;
+    height: 20px;
+    width: 140px;
+    white-space: nowrap;
   }
   /* .food-card__desc */
 
@@ -78,9 +87,10 @@ export default {}
     font-size: 14px;
     color: #716f79;
     text-overflow: ellipsis;
+    white-space: nowrap;
     overflow: hidden;
     height: 35px;
-    width: 175px;
+    width: 150px;
   }
 
   .food-card__weight-and-price {
@@ -105,17 +115,17 @@ export default {}
   }
   /* .food-card__special-offer */
   &__special-offer {
-    width: 25px;
-    height: 25px;
+    width: 15px;
+    height: 15px;
     position: absolute;
-    top: 20px;
-    left: 350px;
+    top: 15px;
+    left: 240px;
   }
   /* .food-card__add-item-btn */
   &__add-item-btn {
     position: absolute;
-    top: 140px;
-    left: 340px;
+    top: 90px;
+    left: 215px;
     display: block;
   }
 }
@@ -303,20 +313,20 @@ export default {}
   @include standard-btn;
   &::after {
     @include befter;
-    width: 4px;
-    height: 13px;
+    width: 2px;
+    height: 10px;
     background-color: #fff;
-    top: 14px;
-    left: 22px;
+    top: 10px;
+    left: 18px;
     transform: rotate(-50deg);
   }
   &::before {
     @include befter;
-    width: 4px;
-    height: 13px;
+    width: 2px;
+    height: 10px;
     background-color: #fff;
-    top: 20px;
-    left: 22px;
+    top: 16px;
+    left: 18px;
     transform: rotate(50deg);
   }
   &:active::after {

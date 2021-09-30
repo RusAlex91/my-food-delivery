@@ -8,6 +8,7 @@ import BaseRegisterButton from './components/ui/BaseRegisterButton.vue'
 // consider delete
 import BaseItemButton from './components/ui/BaseItemButton.vue'
 import ProductItemTemplate from './components/ProductItemTemplate.vue'
+import ViewAllButton from './components/ui/ViewAllButton.vue'
 
 const app = createApp(App)
 
@@ -21,6 +22,7 @@ app.config.performance = true
 app.component('base-register-button', BaseRegisterButton)
 app.component('base-item-button', BaseItemButton)
 app.component('product-item-template', ProductItemTemplate)
+app.component('view-all-btn', ViewAllButton)
 
 app.use(store)
 app.use(router)
