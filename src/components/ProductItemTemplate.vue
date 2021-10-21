@@ -24,8 +24,8 @@
 
     <button
       v-if="foodItemSell"
-      class="food-card__add-item-btn add-item-btn"
-      :class="{ 'remove-item-btn': forSelling }"
+      class="food-card__add-item-btn "
+      :class="{ 'remove-item-btn': forSelling, 'add-item-btn': !forSelling }"
       @click="forSelling = !forSelling"
     ></button>
     <button

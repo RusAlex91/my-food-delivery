@@ -1,6 +1,6 @@
 <template>
   <div class="landing">
-    <LandingNav></LandingNav>
+    <landingNav></landingNav>
     <div class="landing-top-part-wrapper">
       <div class="landing-main-text">
         <span class="enticement">The best cuisine awaits you</span>
@@ -25,7 +25,7 @@
         </li>
       </ul>
     </div>
-    <Slider></Slider>
+    <slider></slider>
     <div class="landing-middle-part-wrapper">
       <div class="food-item-head">
         <h2>All Items</h2>
@@ -58,16 +58,20 @@
         >
       </div>
     </div>
+    <appPromo></appPromo>
+    <reviews></reviews>
   </div>
 </template>
 
 <script>
 import LandingNav from '@/components/navigation/Landing.vue'
 import Slider from '@/components/landing/LandingPageSlider.vue'
+import AppPromo from '@/components/landing/LandingPageMobilePromo.vue'
+import Reviews from '@/components/landing/LandingPageReviews.vue'
 // @ is an alias to /src
 
 export default {
-  components: { LandingNav, Slider }
+  components: { LandingNav, Slider, AppPromo, Reviews }
 }
 </script>
 
